@@ -2,11 +2,60 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Token-bot Host</title>
+  <title>NinoHost</title>
 </head>
 <body>
-  <h1>🚀 Bienvenido a NinoHost Host</h1>
+  <h1>🚀 Bienvenido a NinoHost</h1>
   <p>Servidor gratis con 5 GB de disco y 500 MB de RAM.</p>
-  <button onclick="location.href='console.html'">Agregar al carrito</button>
+
+  <h2>Registro</h2>
+  <form id="registerForm">
+    <input type="email" id="regEmail" placeholder="Correo" required>
+    <input type="password" id="regPassword" placeholder="Contraseña" required>
+    <button type="submit">Registrarse</button>
+  </form>
+
+  <h2>Iniciar Sesión</h2>
+  <form id="loginForm">
+    <input type="email" id="logEmail" placeholder="Correo" required>
+    <input type="password" id="logPassword" placeholder="Contraseña" required>
+    <button type="submit">Entrar</button>
+  </form>
+
+  <p><a href="console.html">Ir a la Consola</a></p>
+
+  <script>
+    const API_URL = "http://localhost:3000"; // ⚠️ Cambia esto cuando tengas tu servidor Node online
+
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      let email = document.getElementById("regEmail").value;
+      let password = document.getElementById("regPassword").value;
+
+      let res = await fetch(API_URL + "/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+
+      let data = await res.json();
+      alert(data.message);
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      let email = document.getElementById("logEmail").value;
+      let password = document.getElementById("logPassword").value;
+
+      let res = await fetch(API_URL + "/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+
+      let data = await res.json();
+      alert(data.message);
+    });
+  </script>
 </body>
 </html>
