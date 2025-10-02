@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Consola del Bot</title>
+  <title>Consola del Bot - NinoHost</title>
 </head>
 <body>
   <h2>🖥 Consola del servidor</h2>
@@ -11,7 +11,7 @@
   <button onclick="sendCommand()">Ejecutar</button>
 
   <script>
-    const ws = new WebSocket("ws://localhost:3000");
+    const ws = new WebSocket("ws://localhost:3000"); // ⚠️ Cambia esto cuando tengas tu servidor Node online
     const output = document.getElementById("output");
 
     ws.onmessage = (event) => {
